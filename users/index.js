@@ -2,6 +2,7 @@ const express = require("express");
 const userModel = require("./schema");
 const bcrypt = require("bcrypt");
 const passport = require("passport");
+const jwt = require("jsonwebtoken");
 
 const router = express.Router();
 
@@ -23,6 +24,14 @@ router.post("/register", async (req, res) => {
     //next(error);
     res.send(error.errors);
   }
+});
+
+router.get("/user", async (req, res) => {
+  let token = req.cookies.accessToken;
+  const decoded = await jwt.verify(token, process.env.SECRET_KEY);
+  console.log(decoded);
+  const user = await userModel.findById(decoded.id);
+  res.send(user);
 });
 
 router.get(
