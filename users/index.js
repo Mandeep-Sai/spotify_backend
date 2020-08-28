@@ -45,13 +45,13 @@ router.get(
   }
 );
 
-  router.get('/auth/facebook',
+  router.get('/facebookLogin',
              
-  passport.authenticate('facebook',{scope: ["profile", "email"]})
+  passport.authenticate("facebook", { scope: ["profile", "email"] })
   
   );
  
-  router.get('/auth/facebook/callback',
+  router.get('/facebook',
   passport.authenticate('facebook', { failureRedirect: '/register' }),
   async (req, res) => {
     try {

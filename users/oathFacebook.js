@@ -22,14 +22,18 @@ const authenticate = async (user) => {
   };
 
 
-passport.use(new facebookStrategy({
-    clientID: process.env.FACEBOOK_APP_ID,
-    clientSecret: process.env.FACEBOOK_APP_SECRET,
-    callbackURL: "http://localhost:3003/users/facebook/callback"
+passport.use(
+    
+    
+    new facebookStrategy({
+    clientID: '3220819281287893',
+    clientSecret: '3e32089f17fd0827c51bdf13eae6a52f',
+    callbackURL: "http://localhost:3003/users/facebook/",
+    enableProof: true
   },
   async (request, accessToken, refreshToken, profile, done) => {
     const newUser = {
-      googleId: profile.id,
+      facebookId: profile.id,
       name: profile.name.givenName,
       surname: profile.name.familyName,
       email: profile.emails[0].value,
@@ -54,9 +58,9 @@ passport.use(new facebookStrategy({
 
 passport.serializeUser(function (user, done) {
     done(null, user);
-  });
+});
   
-  passport.deserializeUser(function (user, done) {
+passport.deserializeUser(function (user, done) {
     done(null, user);
-  });
+});
   
