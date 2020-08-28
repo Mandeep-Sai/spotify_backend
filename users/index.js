@@ -2,7 +2,6 @@ const express = require("express");
 const userModel = require("./schema");
 const bcrypt = require("bcrypt");
 const passport = require("passport");
-const jwt = require("jsonwebtoken");
 
 const router = express.Router();
 
@@ -26,18 +25,11 @@ router.post("/register", async (req, res) => {
   }
 });
 
-router.get("/user", async (req, res) => {
-  let token = req.cookies.accessToken;
-  const decoded = await jwt.verify(token, process.env.SECRET_KEY);
-  console.log(decoded);
-  const user = await userModel.findById(decoded.id);
-  res.send(user);
-});
-
 router.get(
   "/googleLogin",
   passport.authenticate("google", { scope: ["profile", "email"] })
 );
+// router.get("/songs")
 router.get(
   "/googleRedirect",
   passport.authenticate("google"),
@@ -53,4 +45,22 @@ router.get(
   }
 );
 
+  router.get('/auth/facebook',
+             
+  passport.authenticate('facebook',{scope: ["profile", "email"]})
+  
+  );
+ 
+  router.get('/auth/facebook/callback',
+  passport.authenticate('facebook', { failureRedirect: '/register' }),
+  async (req, res) => {
+    try {
+      console.log(req.user);
+      const { token } = req.user.tokens;
+      res.cookie("accessToken", token, { httpOnly: true });
+      res.status(200).redirect("http://localhost:3000/");
+    } catch (error) {
+      console.log(error);
+    }
+  });
 module.exports = router;
