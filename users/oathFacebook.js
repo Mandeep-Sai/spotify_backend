@@ -29,6 +29,7 @@ passport.use(
     clientID: '3220819281287893',
     clientSecret: '3e32089f17fd0827c51bdf13eae6a52f',
     callbackURL: "http://localhost:3003/users/facebook/",
+    profileFields: ['id', 'displayName', 'email', 'first_name', 'last_name'],
     enableProof: true
   },
   async (request, accessToken, refreshToken, profile, done) => {
@@ -37,7 +38,10 @@ passport.use(
       name: profile.name.givenName,
       surname: profile.name.familyName,
       email: profile.emails[0].value,
+      username: profile.username
     };
+    
+    console.log(profile)
     try {
       const user = await userModel.findOne({ facebookId: profile.id });
 
