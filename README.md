@@ -23,8 +23,8 @@ Clone or Download [this repository](https://github.com/emmas4impact/spotify_back
 - Linkedin:[@linkedIn/emmas4impact](https://www.linkedin.com/in/emmas4impact/)
 
 :bust_in_silhouette: **Strahinja**
-- GitHub:[@github/oksanacoder](https://github.com/OksanaCoder)
-- Linkedin:[@linkedIn/oksana](https://www.linkedin.com/in/ksena19/)
+- GitHub:[@github/LaLe1993](https://github.com/LaLe1993)
+- Linkedin:[@linkedIn/strahinja](https://www.linkedin.com/in/strahinja-lalovic-b86685b7/)
 
 
 
