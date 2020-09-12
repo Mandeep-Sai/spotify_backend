@@ -10,7 +10,7 @@
 -FACEBOOK-PASSPORT
 - GOOGLE-PASSPORT
 - EXPRESS 
--MONGODB
+- MONGODB
 ## Getting Started
 Clone or Download [this repository](https://github.com/emmas4impact/spotify_backend) and open file in your Code Editor
 ## Authors
